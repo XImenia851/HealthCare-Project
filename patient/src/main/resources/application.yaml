@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: patient
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc: mysql://localhost: 3307/${BD_HEALTHCARE}
+    username: ${DB_HEALTHCARE_USER}
+    password: ${DB_HEALTHCARE_PASSWORD}
+  jackson:
+    serialization:
+      write-date-keys-as-timestamps: false
+
+server:
+  port: 8085
