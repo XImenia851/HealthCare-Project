@@ -1,0 +1,24 @@
+networks:
+  healthcare-network:
+
+services:
+
+  mysql-healthcare:
+    image: mysql
+    container_name: mysql-healthcare
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_HEALTHCARE}
+      MYSQL_ROOT_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
+      MYSQL_USER: ${DB_HEALTHCARE_USER}
+      MYSQL_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
+    healthcheck:
+      test: ["CMD","mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    ports:
+      - "3307:3306"
+    networks:
+      - healthcare-network
