@@ -1,24 +1,41 @@
 networks:
   healthcare-network:
+    driver: bridge
 
 services:
 
   mysql-healthcare:
-    image: mysql
+    image: mysql:9.7
     container_name: mysql-healthcare
     restart: always
     environment:
-      MYSQL_DATABASE: ${DB_HEALTHCARE}
-      MYSQL_ROOT_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
-      MYSQL_USER: ${DB_HEALTHCARE_USER}
-      MYSQL_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
+        MYSQL_DATABASE: ${DB_HEALTHCARE}
+        MYSQL_ROOT_PASSWORD: ${DB_HEALTHCARE_ROOT_PASSWORD}
+        MYSQL_USER: ${DB_HEALTHCARE_USER}
+        MYSQL_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
     healthcheck:
-      test: ["CMD","mysqladmin", "ping", "-h", "127.0.0.1"]
+        test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+        interval: 10s
+        timeout: 5s
+        retries: 10
+        start_period: 30s
+    ports:
+        - "3309:3306"
+    networks:
+      - healthcare-network
+
+  consul:
+    image: hashicorp/consul:1.21.3
+    container_name: consul-healthcare
+    restart: always
+    mem_limit: 700m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8500/v1/status/leader"]
       interval: 10s
       timeout: 5s
-      retries: 10
-      start_period: 30s
+      retries: 5
+      start_period: 10s
     ports:
-      - "3307:3306"
+      - "8500:8500"
     networks:
       - healthcare-network
