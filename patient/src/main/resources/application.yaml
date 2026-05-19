@@ -1,17 +1,14 @@
 spring:
   application:
     name: patient
-
   datasource:
     url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3309}/${DB_HEALTHCARE:healthcare}
     username: ${DB_HEALTHCARE_USER:userHealthcare}
     password: ${DB_HEALTHCARE_PASSWORD:passwordHealthcare}
-
   jpa:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
-
   jackson:
     serialization:
       write-dates-as-timestamps: false

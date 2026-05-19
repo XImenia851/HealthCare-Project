@@ -1,3 +1,23 @@
+server:
+  port: 8080
 spring:
   application:
-    name: webapp
+    name: healthcare-webapp
+  cloud:
+    config:
+      enabled: false
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      discovery:
+        service-name: healthcare-webapp
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        prefer-ip-address: true
+  thymeleaf:
+    cache: false # Pratique en développement pour voir les changements HTML sans redémarrer
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
