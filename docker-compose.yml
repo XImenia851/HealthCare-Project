@@ -9,18 +9,18 @@ services:
     container_name: mysql-healthcare
     restart: always
     environment:
-        MYSQL_DATABASE: ${DB_HEALTHCARE}
-        MYSQL_ROOT_PASSWORD: ${DB_HEALTHCARE_ROOT_PASSWORD}
-        MYSQL_USER: ${DB_HEALTHCARE_USER}
-        MYSQL_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
+      MYSQL_DATABASE: ${DB_HEALTHCARE}
+      MYSQL_ROOT_PASSWORD: ${DB_HEALTHCARE_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_HEALTHCARE_USER}
+      MYSQL_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
     healthcheck:
-        test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-        interval: 10s
-        timeout: 5s
-        retries: 10
-        start_period: 30s
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     ports:
-        - "3309:3306"
+      - "3309:3306"
     networks:
       - healthcare-network
 
@@ -29,13 +29,43 @@ services:
     container_name: consul-healthcare
     restart: always
     mem_limit: 700m
+    command: agent -dev -client=0.0.0.0
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8500/v1/status/leader"]
+      test: [ "CMD", "curl", "-f", "http://localhost:8500/v1/status/leader" ]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 10s
     ports:
       - "8500:8500"
+    networks:
+      - healthcare-network
+
+  patient:
+    image: ximenia851/patient:1.0
+    container_name: patient-healthcare
+    restart: always
+    depends_on:
+      mysql-healthcare:
+        condition: service_healthy
+      consul:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql-healthcare
+      DB_PORT: 3306
+      DB_HEALTHCARE: ${DB_HEALTHCARE}
+      DB_HEALTHCARE_USER: ${DB_HEALTHCARE_USER}
+      DB_HEALTHCARE_PASSWORD: ${DB_HEALTHCARE_PASSWORD}
+      CONSUL_HOST: consul
+      CONSUL_PORT: 8500
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    ports:
+      - "8081:8080"
+    mem_limit: 700m
     networks:
       - healthcare-network
