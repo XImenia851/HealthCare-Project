@@ -20,6 +20,8 @@ public class Patient {
     @Email
     @Column(unique = true)
     private String email;
+    @NotBlank
+    private String password;
     @NotBlank (message = "can't be blank")
     @Pattern(regexp = "[0-9]{10}", message = "can't be empty")
     private String phoneNumber;

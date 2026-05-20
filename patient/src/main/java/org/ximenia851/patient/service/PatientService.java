@@ -17,7 +17,7 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
-    private List<Patient> findAll() {
+    public List<Patient> findAll() {
         return patientRepository.findAll();
     }
 
@@ -31,6 +31,10 @@ public class PatientService {
 
     public Patient findById(Long id) {
         return patientRepository.findById(id).orElse(null);
+    }
+
+    public Patient findByEmail(String email) {
+        return patientRepository.findByEmail(email).orElse(null);
     }
 
 }
