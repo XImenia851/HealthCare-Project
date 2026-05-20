@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<body>
+
+<header th:fragment="header" class="main-header">
+
+    <div class="header-container">
+
+        <a th:href="@{/dashboard}" class="logo-section">
+
+            <div class="logo-box">
+                HC
+            </div>
+
+            <div class="logo-content">
+                <h2>HealthCare</h2>
+                <span>Medical Platform</span>
+            </div>
+
+        </a>
+
+        <nav class="main-nav">
+
+            <a th:href="@{/dashboard}" class="nav-link">
+                Dashboard
+            </a>
+
+<!--            <a th:href="@{/appointments}" class="nav-link">-->
+<!--                Rendez-vous-->
+<!--            </a>-->
+
+<!--            <a th:href="@{/medical-record}" class="nav-link">-->
+<!--                Dossier médical-->
+<!--            </a>-->
+
+<!--            <a th:href="@{/prescriptions}" class="nav-link">-->
+<!--                Ordonnances-->
+<!--            </a>-->
+
+            <a th:href="@{/profile}" class="nav-link">
+                Profil
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<footer th:fragment="footer" class="main-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-left">
+
+            <h3>HealthCare</h3>
+
+            <p>
+                Plateforme médicale sécurisée.
+            </p>
+
+        </div>
+
+        <div class="footer-right">
+
+            <a th:href="@{/dashboard}">
+                Dashboard
+            </a>
+
+            <a th:href="@{/profile}">
+                Profil
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

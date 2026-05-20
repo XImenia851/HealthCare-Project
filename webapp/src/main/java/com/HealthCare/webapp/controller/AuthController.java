@@ -31,9 +31,8 @@ public class AuthController {
     @PostMapping("/signUp")
     public String registerPatient(@ModelAttribute("patient") PatientDTO patient, Model model) {
         try {
-            // Hachage du mot de passe avant l'envoi au microservice backend
-            String hashedPassword = passwordEncoder.encode(patient.getPassword()); // <-- LIGNE À AJOUTER
-            patient.setPassword(hashedPassword);                                   // <-- LIGNE À AJOUTER
+            String hashedPassword = passwordEncoder.encode(patient.getPassword());
+            patient.setPassword(hashedPassword);
 
             // Appel du microservice 'patient' via OpenFeign
             patientFeignClient.addPatient(patient);

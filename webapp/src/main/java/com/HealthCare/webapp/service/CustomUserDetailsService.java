@@ -28,8 +28,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             // 2. On convertit notre PatientDTO en un objet UserDetails que Spring Security comprend
             return User.builder()
                     .username(patient.getEmail())
-                    .password(patient.getPassword()) // Ce sera le mot de passe haché de la BDD
-                    .roles("USER") // Tu pourras gérer des vrais rôles plus tard
+                    .password(patient.getPassword())
+                    .roles("USER")
                     .build();
 
         } catch (Exception e) {

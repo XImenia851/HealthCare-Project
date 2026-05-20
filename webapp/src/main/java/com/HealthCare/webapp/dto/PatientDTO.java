@@ -13,7 +13,5 @@ public class PatientDTO {
     private String address;
     private String gender;
     private LocalDate birthDate;
-
-    // même si le microservice patient ne le stocke pas encore, on anticipe.
     private String password;
 }
