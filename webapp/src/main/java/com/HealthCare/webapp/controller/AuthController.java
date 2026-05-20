@@ -3,6 +3,7 @@ package com.HealthCare.webapp.controller;
 import com.HealthCare.webapp.client.PatientFeignClient;
 import com.HealthCare.webapp.dto.PatientDTO;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // <-- AJOUT DE L'IMPORT
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AuthController {
 
     private final PatientFeignClient patientFeignClient;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    // Affiche la page d'inscription et prépare un objet PatientDTO vide pour le formulaire Thymeleaf
     @GetMapping("/signUp")
     public String signUpForm(Model model) {
         model.addAttribute("patient", new PatientDTO());
@@ -30,6 +31,10 @@ public class AuthController {
     @PostMapping("/signUp")
     public String registerPatient(@ModelAttribute("patient") PatientDTO patient, Model model) {
         try {
+            // Hachage du mot de passe avant l'envoi au microservice backend
+            String hashedPassword = passwordEncoder.encode(patient.getPassword()); // <-- LIGNE À AJOUTER
+            patient.setPassword(hashedPassword);                                   // <-- LIGNE À AJOUTER
+
             // Appel du microservice 'patient' via OpenFeign
             patientFeignClient.addPatient(patient);
 
