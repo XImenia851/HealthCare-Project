@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>Connexion - HealthCare</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
 </head>
 <body>
+
+<div th:replace="layout/fragments :: header"></div>
+
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -33,9 +37,10 @@
                 <button type="submit" class="btn">Se connecter</button>
             </form>
             <hr>
-            <p class="text-center">Nouveau patient ? <a th:href="@{/signUp}">Créez un compte</a></p>
+            <p class="text-center">Nouveau patient ? <a th:href="@{/signUp}">Créez un compte ici</a></p>
         </div>
     </div>
 </div>
+
 </body>
 </html>

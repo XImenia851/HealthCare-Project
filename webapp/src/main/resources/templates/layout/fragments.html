@@ -1,81 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
 
+<!-- ══════════════════════════════════════════════════
+     SIDEBAR FRAGMENT
+     Usage : <div th:replace="layout/fragments :: sidebar"></div>
+     Prérequis : model.addAttribute("activePage", "dashboard") dans le controller
+     ══════════════════════════════════════════════════ -->
+<aside th:fragment="sidebar" class="sidebar">
+
+    <div class="brand">
+        <div class="brand-logo">HC</div>
+        <div class="brand-content">
+            <h2>HealthCare</h2>
+            <span>Espace Patient</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a th:href="@{/dashboard}"
+           th:classappend="${activePage == 'dashboard'} ? 'active'"
+           class="nav-item">
+            <span class="nav-icon">⊞</span>
+            Dashboard
+        </a>
+        <a th:href="@{/profil}"
+           th:classappend="${activePage == 'profil'} ? 'active'"
+           class="nav-item">
+            <span class="nav-icon">◉</span>
+            Mon Profil
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="logout-btn">
+                <span>⏻</span>
+                Déconnexion
+            </button>
+        </form>
+    </div>
+
+</aside>
+
+<!-- HEADER (pages sans sidebar — login, signup, etc.) -->
 <header th:fragment="header" class="main-header">
-
     <div class="header-container">
-
-        <a th:href="@{/dashboard}" class="logo-section">
-
-            <div class="logo-box">
-                HC
-            </div>
-
+        <a th:href="@{/dashboard}" class="brand-link">
+            <div class="logo-box">HC</div>
             <div class="logo-content">
                 <h2>HealthCare</h2>
                 <span>Medical Platform</span>
             </div>
-
         </a>
-
         <nav class="main-nav">
-
-            <a th:href="@{/dashboard}" class="nav-link">
-                Dashboard
-            </a>
-
-<!--            <a th:href="@{/appointments}" class="nav-link">-->
-<!--                Rendez-vous-->
-<!--            </a>-->
-
-<!--            <a th:href="@{/medical-record}" class="nav-link">-->
-<!--                Dossier médical-->
-<!--            </a>-->
-
-<!--            <a th:href="@{/prescriptions}" class="nav-link">-->
-<!--                Ordonnances-->
-<!--            </a>-->
-
-            <a th:href="@{/profile}" class="nav-link">
-                Profil
-            </a>
-
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link">Gestion</a>
+            <a href="#" class="nav-link">Spécialités</a>
+            <a href="#" class="nav-link">Médecins</a>
+            <a href="#" class="nav-link">Calendrier</a>
         </nav>
-
+        <div class="header-actions">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">Déconnexion</button>
+            </form>
+        </div>
     </div>
-
 </header>
 
+<!-- FOOTER -->
 <footer th:fragment="footer" class="main-footer">
-
     <div class="footer-container">
-
         <div class="footer-left">
-
             <h3>HealthCare</h3>
-
-            <p>
-                Plateforme médicale sécurisée.
-            </p>
-
+            <p>Plateforme médicale moderne dédiée au suivi et à la gestion des patients.</p>
         </div>
-
         <div class="footer-right">
-
-            <a th:href="@{/dashboard}">
-                Dashboard
-            </a>
-
-            <a th:href="@{/profile}">
-                Profil
-            </a>
-
+            <a href="#">Confidentialité</a>
+            <a href="#">Conditions</a>
         </div>
-
     </div>
-
 </footer>
 
 </body>

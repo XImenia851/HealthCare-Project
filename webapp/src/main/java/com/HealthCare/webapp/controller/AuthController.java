@@ -33,8 +33,6 @@ public class AuthController {
         try {
             String hashedPassword = passwordEncoder.encode(patient.getPassword());
             patient.setPassword(hashedPassword);
-
-            // Appel du microservice 'patient' via OpenFeign
             patientFeignClient.addPatient(patient);
 
             return "redirect:/login?success";

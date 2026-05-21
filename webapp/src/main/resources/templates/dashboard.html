@@ -13,175 +13,73 @@
 
 <div class="layout">
 
-    <aside class="sidebar">
-
-        <div class="brand">
-
-            <div class="brand-logo">
-                HC
-            </div>
-
-            <div class="brand-content">
-                <h2>HealthCare</h2>
-                <span>Espace Patient</span>
-            </div>
-
-        </div>
-
-        <nav class="sidebar-nav">
-
-            <a th:href="@{/dashboard}" class="nav-item active">
-                Dashboard
-            </a>
-
-<!--            <a th:href="@{/appointments}" class="nav-item">-->
-<!--                Rendez-vous-->
-<!--            </a>-->
-
-<!--            <a th:href="@{/medical-record}" class="nav-item">-->
-<!--                Dossier médical-->
-<!--            </a>-->
-
-<!--            <a th:href="@{/prescriptions}" class="nav-item">-->
-<!--                Ordonnances-->
-<!--            </a>-->
-
-            <a th:href="@{/profil}" class="nav-item">
-                Profil
-            </a>
-
-        </nav>
-
-    </aside>
+    <!-- Sidebar réutilisable depuis fragments.html -->
+    <div th:replace="layout/fragments :: sidebar"></div>
 
     <main class="main-content">
 
-        <header class="topbar">
-
-            <div class="topbar-left">
-                <h1>Bonjour</h1>
-                <p>
-                    Bienvenue sur votre espace HealthCare.
-                </p>
-            </div>
-
-            <div class="topbar-right">
-
-                <div class="status-card">
-                    <span class="status-dot"></span>
-                    Service opérationnel
-                </div>
-
-                <form th:action="@{/logout}" method="post">
-
-                    <button type="submit" class="logout-btn">
-                        Déconnexion
-                    </button>
-
-                </form>
-
-            </div>
-
-        </header>
-
-        <section class="stats-grid">
-
-            <div class="stat-card">
-
-                <div class="stat-header">
-                    <span>Rendez-vous</span>
-                    <div class="stat-bar blue"></div>
-                </div>
-
-                <h2>12</h2>
-
-                <p>Ce mois-ci</p>
-
-            </div>
-
-            <div class="stat-card">
-
-                <div class="stat-header">
-                    <span>Documents</span>
-                    <div class="stat-bar green"></div>
-                </div>
-
-                <h2>28</h2>
-
-                <p>Dossiers disponibles</p>
-
-            </div>
-
-            <div class="stat-card">
-
-                <div class="stat-header">
-                    <span>Ordonnances</span>
-                    <div class="stat-bar orange"></div>
-                </div>
-
-                <h2>7</h2>
-
-                <p>Actives actuellement</p>
-
-            </div>
-
+        <section class="welcome-section">
+            <h1 th:text="'Bonjour, ' + ${patient.firstName} + ' ' + ${patient.lastName}">Bonjour</h1>
+            <p>Bienvenue sur votre espace de santé. Voici le récapitulatif de votre activité.</p>
         </section>
 
-        <section class="content-grid">
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Prochain RDV</h3>
+                <div class="stat-number" style="font-size: 1.4rem; color: #16a34a;">Mardi 14:30</div>
+            </div>
+            <div class="stat-card">
+                <h3>Documents</h3>
+                <div class="stat-number">3</div>
+            </div>
+            <div class="stat-card">
+                <h3>Messages</h3>
+                <div class="stat-number">0</div>
+            </div>
+        </section>
+
+        <section class="dashboard-panels">
 
             <div class="panel">
+                <div class="panel-header">
+                    <h3>Activités Récentes</h3>
+                </div>
                 <div class="activity-list">
                     <div class="activity-item">
-
                         <div class="activity-color green"></div>
-
                         <div class="activity-content">
                             <h4>Consultation confirmée</h4>
                             <p>Cardiologie - Mardi 14:30</p>
                         </div>
-
                     </div>
-
                     <div class="activity-item">
-
                         <div class="activity-color orange"></div>
-
                         <div class="activity-content">
                             <h4>Nouvelle ordonnance</h4>
                             <p>Prescription validée</p>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
 
             <div class="panel">
-
                 <div class="panel-header">
                     <h3>Planning</h3>
                 </div>
-
                 <div class="planning-list">
-
                     <div class="planning-item">
                         <span>09:00</span>
                         <p>Consultation générale</p>
                     </div>
-
                     <div class="planning-item">
                         <span>11:30</span>
                         <p>Analyse laboratoire</p>
                     </div>
-
                     <div class="planning-item">
                         <span>15:00</span>
                         <p>Suivi médical</p>
                     </div>
-
                 </div>
-
             </div>
 
         </section>

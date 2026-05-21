@@ -1,23 +1,20 @@
 :root {
-
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
-
-    --success-color: #22c55e;
-
-    --secondary-color: #0f172a;
-
-    --bg-color: #f1f5f9;
-
-    --card-bg: rgba(255, 255, 255, 0.92);
-
-    --text-color: #1e293b;
-    --text-light: #64748b;
-
-    --border-color: rgba(255, 255, 255, 0.18);
-
-    --shadow:
-            0 10px 35px rgba(15, 23, 42, 0.08);
+    --primary-color: #16a34a;       /* Magnifique vert médical émeraude pro */
+    --primary-hover: #15803d;       /* Vert plus soutenu pour les survols */
+    --primary-light: #dcfce7;       /* Vert très doux pour les badges et alertes */
+    --secondary-color: #0f172a;     /* Ardoise foncé pour les textes majeurs et contrastes */
+    --background-color: #f8fafc;    /* Fond de page lumineux et ultra-pro */
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #334155;          /* Gris doux lisible */
+    --text-light: #64748b;          /* Pour les légendes et labels */
+    --border-color: #e2e8f0;        /* Bordures fines élégantes */
+    --success-color: #22c55e;       /* Vert de validation */
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
 }
 
 * {
@@ -26,340 +23,154 @@
     box-sizing: border-box;
 }
 
-/* =========================================
-   HEADER
-========================================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
 
+/* Header */
 .main-header {
-
     width: 100%;
-
     position: sticky;
     top: 0;
-
     z-index: 1000;
-
     backdrop-filter: blur(18px);
-
-    background:
-            rgba(255, 255, 255, 0.72);
-
-    border-bottom:
-            1px solid rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(18px);
+    background: rgba(255, 255, 255, 0.82);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header-container {
-
-    width: 100%;
-    max-width: 1400px;
-
+    max-width: 1280px;
     margin: 0 auto;
-
-    padding:
-            18px 30px;
-
+    padding: 14px 24px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-
-    gap: 25px;
+    align-items: center;
 }
 
-/* =========================================
-   LOGO
-========================================= */
-
-.logo-section {
-
+.brand-link {
     display: flex;
     align-items: center;
-
-    gap: 15px;
-
+    gap: 12px;
     text-decoration: none;
 }
 
 .logo-box {
-
-    width: 56px;
-    height: 56px;
-
-    border-radius: 18px;
-
-    background:
-            linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #1d4ed8
-            );
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    background: var(--primary-color);
     color: white;
-
-    font-weight: 800;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
     font-size: 1.1rem;
-
-    box-shadow:
-            0 10px 24px rgba(37, 99, 235, 0.28);
 }
 
 .logo-content h2 {
-
+    font-size: 1.15rem;
     color: var(--secondary-color);
-
-    font-size: 1.4rem;
-
-    margin-bottom: 3px;
-
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .logo-content span {
-
+    font-size: 0.78rem;
     color: var(--text-light);
-
-    font-size: 0.92rem;
+    display: block;
 }
 
-/* =========================================
-   NAVIGATION
-========================================= */
-
 .main-nav {
-
     display: flex;
-    align-items: center;
-
-    gap: 10px;
+    gap: 6px;
 }
 
 .nav-link {
-
     text-decoration: none;
-
     color: var(--text-light);
-
-    padding:
-            12px 18px;
-
-    border-radius: 14px;
-
-    font-weight: 600;
-
-    transition:
-            background 0.2s ease,
-            color 0.2s ease,
-            transform 0.2s ease;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
 }
 
 .nav-link:hover {
-
-    background:
-            rgba(37, 99, 235, 0.08);
-
-    color: var(--primary-color);
-
-    transform: translateY(-1px);
-}
-
-/* =========================================
-   ACTIONS
-========================================= */
-
-.header-actions {
-
-    display: flex;
-    align-items: center;
-
-    gap: 16px;
-}
-
-.logout-btn {
-
-    border: none;
-
-    padding:
-            13px 20px;
-
-    border-radius: 14px;
-
-    cursor: pointer;
-
-    font-weight: 700;
-
-    color: white;
-
-    background:
-            linear-gradient(
-                    135deg,
-                    #0f172a,
-                    #1e293b
-            );
-
-    transition:
-            transform 0.2s ease,
-            opacity 0.2s ease,
-            box-shadow 0.2s ease;
-
-    box-shadow:
-            0 8px 20px rgba(15, 23, 42, 0.18);
-}
-
-.logout-btn:hover {
-
-    transform: translateY(-2px);
-
-    opacity: 0.96;
-
-    box-shadow:
-            0 12px 28px rgba(15, 23, 42, 0.24);
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-
-.main-footer {
-
-    margin-top: 90px;
-
-    backdrop-filter: blur(18px);
-
-    background:
-            rgba(255, 255, 255, 0.72);
-
-    border-top:
-            1px solid rgba(255, 255, 255, 0.3);
-}
-
-.footer-container {
-
-    width: 100%;
-    max-width: 1400px;
-
-    margin: 0 auto;
-
-    padding:
-            40px 30px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 40px;
-}
-
-.footer-left h3 {
-
-    font-size: 1.3rem;
-
-    margin-bottom: 8px;
-
+    background: #f1f5f9;
     color: var(--secondary-color);
 }
 
+.logout-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.logout-btn:hover {
+    background: #fef2f2;
+    border-color: #fee2e2;
+    color: var(--error-color);
+}
+
+/* Footer */
+.main-footer {
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+    padding: 40px 24px;
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-left h3 {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 4px;
+}
+
 .footer-left p {
-
+    font-size: 0.88rem;
     color: var(--text-light);
-
-    max-width: 340px;
-
-    line-height: 1.6;
 }
 
 .footer-right {
-
     display: flex;
-
-    gap: 22px;
+    gap: 20px;
 }
 
 .footer-right a {
-
     text-decoration: none;
-
     color: var(--text-light);
-
-    font-weight: 600;
-
-    transition:
-            color 0.2s ease,
-            transform 0.2s ease;
+    font-size: 0.88rem;
+    transition: color 0.15s ease;
 }
 
 .footer-right a:hover {
-
     color: var(--primary-color);
-
-    transform: translateY(-1px);
 }
-
-/* =========================================
-   MOBILE
-========================================= */
 
 @media (max-width: 900px) {
-
-    .header-container {
-
+    .header-container, .footer-container {
         flex-direction: column;
-
         align-items: flex-start;
+        gap: 16px;
     }
-
     .main-nav {
-
+        width: 100%;
         flex-wrap: wrap;
-
+    }
+    .header-actions, .logout-btn {
         width: 100%;
-    }
-
-    .header-actions {
-
-        width: 100%;
-    }
-
-    .logout-btn {
-
-        width: 100%;
-    }
-
-    .footer-container {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .header-container,
-    .footer-container {
-
-        padding:
-                22px 18px;
-    }
-
-    .main-nav {
-
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .nav-link {
-
-        width: 100%;
-    }
-
-    .footer-right {
-
-        flex-direction: column;
-
-        gap: 14px;
     }
 }

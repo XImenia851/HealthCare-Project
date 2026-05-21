@@ -5,157 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil - HealthCare</title>
-
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" th:href="@{/css/layout.css}">
     <link rel="stylesheet" th:href="@{/css/profil.css}">
-
 </head>
 
 <body>
 
-<div th:replace="layout/fragments :: header"></div>
+<div class="layout">
 
-<main class="main-content">
+    <!-- Sidebar partagée -->
+    <div th:replace="layout/fragments :: sidebar"></div>
 
-    <div class="page-header">
+    <main class="main-content">
 
-        <div>
-            <h1>Mon profil</h1>
-
-            <p>
-                Consultez vos informations personnelles.
-            </p>
+        <div class="page-header">
+            <div>
+                <h1>Mon profil</h1>
+                <p>Consultez vos informations personnelles.</p>
+            </div>
         </div>
 
-    </div>
+        <section class="profile-container">
+            <div class="profile-card">
 
-    <section class="profile-container">
+                <div class="profile-header">
+                    <div class="avatar">
+                        <span th:text="${patient.firstName.substring(0,1)} + ${patient.lastName.substring(0,1)}">JD</span>
+                    </div>
+                    <div class="profile-info">
+                        <h2 th:text="${patient.firstName} + ' ' + ${patient.lastName}">John Doe</h2>
+                    </div>
+                </div>
 
-        <div class="profile-card">
+                <div class="profile-grid">
 
-            <div class="profile-header">
+                    <div class="info-group">
+                        <label>Téléphone</label>
+                        <div class="info-box" th:text="${patient.phoneNumber}">0600000000</div>
+                    </div>
 
-                <div class="avatar">
+                    <div class="info-group">
+                        <label>Adresse</label>
+                        <div class="info-box" th:text="${patient.address}">Adresse</div>
+                    </div>
 
-                    <span th:text="${patient.firstName.substring(0,1)} + ${patient.lastName.substring(0,1)}">
-                        JD
-                    </span>
+                    <div class="info-group">
+                        <label>Genre</label>
+                        <div class="info-box" th:text="${patient.gender}">Homme</div>
+                    </div>
+
+                    <div class="info-group full-width">
+                        <label>Date de naissance</label>
+                        <div class="info-box" th:text="${patient.birthDate}">2000-01-01</div>
+                    </div>
 
                 </div>
 
-                <div class="profile-info">
-
-                    <h2 th:text="${patient.firstName} + ' ' + ${patient.lastName}">
-                        John Doe
-                    </h2>
-
-                    <p th:text="${patient.email}">
-                        john@email.com
-                    </p>
-
+                <div class="actions">
+                    <a th:href="@{/profile/edit}" class="edit-btn">Modifier le profil</a>
                 </div>
 
             </div>
+        </section>
 
-            <div class="profile-grid">
+    </main>
 
-                <div class="info-group">
-
-                    <label>Prénom</label>
-
-                    <div class="info-box"
-                         th:text="${patient.firstName}">
-                        John
-                    </div>
-
-                </div>
-
-                <div class="info-group">
-
-                    <label>Nom</label>
-
-                    <div class="info-box"
-                         th:text="${patient.lastName}">
-                        Doe
-                    </div>
-
-                </div>
-
-                <div class="info-group">
-
-                    <label>Email</label>
-
-                    <div class="info-box"
-                         th:text="${patient.email}">
-                        john@email.com
-                    </div>
-
-                </div>
-
-                <div class="info-group">
-
-                    <label>Téléphone</label>
-
-                    <div class="info-box"
-                         th:text="${patient.phoneNumber}">
-                        0600000000
-                    </div>
-
-                </div>
-
-                <div class="info-group">
-
-                    <label>Adresse</label>
-
-                    <div class="info-box"
-                         th:text="${patient.address}">
-                        Adresse
-                    </div>
-
-                </div>
-
-                <div class="info-group">
-
-                    <label>Genre</label>
-
-                    <div class="info-box"
-                         th:text="${patient.gender}">
-                        Homme
-                    </div>
-
-                </div>
-
-                <div class="info-group full-width">
-
-                    <label>Date de naissance</label>
-
-                    <div class="info-box"
-                         th:text="${patient.birthDate}">
-                        2000-01-01
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="actions">
-
-                <a th:href="@{/profile/edit}"
-                   class="edit-btn">
-
-                    Modifier le profil
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-<div th:replace="layout/fragments :: footer"></div>
+</div>
 
 </body>
 </html>
