@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-
-<!-- ══════════════════════════════════════════════════
-     SIDEBAR FRAGMENT
-     Usage : <div th:replace="layout/fragments :: sidebar"></div>
-     Prérequis : model.addAttribute("activePage", "dashboard") dans le controller
-     ══════════════════════════════════════════════════ -->
 <aside th:fragment="sidebar" class="sidebar">
 
     <div class="brand">
@@ -55,9 +49,9 @@
         </a>
         <nav class="main-nav">
             <a href="#" class="nav-link">Accueil</a>
-            <a href="#" class="nav-link">Gestion</a>
+            <a href="#" class="nav-link">Espace médecins</a>
             <a href="#" class="nav-link">Spécialités</a>
-            <a href="#" class="nav-link">Médecins</a>
+            <a th:href="@{/doctors}" class="nav-link">Médecins</a>
             <a href="#" class="nav-link">Calendrier</a>
         </nav>
         <div class="header-actions">

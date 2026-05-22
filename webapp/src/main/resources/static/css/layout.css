@@ -1,14 +1,14 @@
 :root {
-    --primary-color: #16a34a;       /* Magnifique vert médical émeraude pro */
-    --primary-hover: #15803d;       /* Vert plus soutenu pour les survols */
-    --primary-light: #dcfce7;       /* Vert très doux pour les badges et alertes */
-    --secondary-color: #0f172a;     /* Ardoise foncé pour les textes majeurs et contrastes */
-    --background-color: #f8fafc;    /* Fond de page lumineux et ultra-pro */
+    --primary-color: #16a34a;
+    --primary-hover: #15803d;
+    --primary-light: #dcfce7;
+    --secondary-color: #0f172a;
+    --background-color: #f8fafc;
     --card-bg: rgba(255, 255, 255, 0.95);
-    --text-color: #334155;          /* Gris doux lisible */
-    --text-light: #64748b;          /* Pour les légendes et labels */
-    --border-color: #e2e8f0;        /* Bordures fines élégantes */
-    --success-color: #22c55e;       /* Vert de validation */
+    --text-color: #334155;
+    --text-light: #64748b;
+    --border-color: #e2e8f0;
+    --success-color: #22c55e;
     --error-color: #ef4444;
     --warning-color: #f59e0b;
     --shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
@@ -25,7 +25,13 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--background-color);
+    background-color: #f0fdf4;
+    background-image:
+            radial-gradient(ellipse at 10% 20%, rgba(22, 163, 74, 0.06) 0%, transparent 55%),
+            radial-gradient(ellipse at 90% 80%, rgba(22, 163, 74, 0.05) 0%, transparent 55%),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect x='21' y='12' width='6' height='24' rx='2' fill='%2316a34a' opacity='0.06'/%3E%3Crect x='12' y='21' width='24' height='6' rx='2' fill='%2316a34a' opacity='0.06'/%3E%3C/svg%3E");
+    background-size: auto, auto, 48px 48px;
+    background-attachment: fixed;
     color: var(--text-color);
     line-height: 1.5;
 }
@@ -49,6 +55,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: aquamarine;
 }
 
 .brand-link {
@@ -60,7 +67,7 @@ body {
 
 .logo-box {
     background: var(--primary-color);
-    color: white;
+    color: #ffffff;
     font-weight: 700;
     padding: 8px 12px;
     border-radius: var(--radius-sm);

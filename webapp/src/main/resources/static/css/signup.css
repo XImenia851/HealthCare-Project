@@ -16,7 +16,7 @@ body {
 }
 
 .card {
-    background: var(--card-bg);
+    background: linear-gradient(135deg, #54d9cc, rgba(66, 220, 122, 0.43));
     width: 100%;
     max-width: 420px;
     border-radius: var(--radius-md);

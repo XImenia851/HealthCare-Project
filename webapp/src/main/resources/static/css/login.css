@@ -19,7 +19,7 @@ body {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, #54d9cc, rgba(66, 220, 122, 0.43));
     backdrop-filter: blur(8px);
     width: 100%;
     max-width: 420px;

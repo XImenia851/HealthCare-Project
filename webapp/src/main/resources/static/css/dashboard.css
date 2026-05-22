@@ -67,7 +67,7 @@
 .main-content {
     flex: 1;
     padding: 40px;
-    background-color: #f8fafc;
+    background-color: transparent;
 }
 
 .welcome-section {

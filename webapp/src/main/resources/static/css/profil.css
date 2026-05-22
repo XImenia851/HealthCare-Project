@@ -3,7 +3,7 @@
 .main-content {
     flex: 1;                  /* prend l'espace restant après la sidebar */
     padding: 40px;
-    background-color: #f8fafc;
+    background-color: transparent;
     overflow-y: auto;
 }
 
