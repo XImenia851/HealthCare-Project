@@ -45,4 +45,29 @@ public class PatientController {
         if (patient == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(patient);
     }
+
+    @PutMapping("/patients/{id}")
+    public ResponseEntity<Patient> updatePatient(
+            @PathVariable Long id,
+            @RequestBody Patient patient) {  // pas de @Valid — le password n'est pas dans le form
+        Patient existing = patientService.findById(id);
+        if (existing == null) return ResponseEntity.notFound().build();
+
+        patient.setId(id);
+
+        // On conserve le mot de passe existant si non fourni
+        if (patient.getPassword() == null || patient.getPassword().isBlank()) {
+            patient.setPassword(existing.getPassword());
+        }
+
+        return ResponseEntity.ok(patientService.save(patient));
+    }
+
+    @DeleteMapping("/patients/{id}")
+    public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
+        Patient existing = patientService.findById(id);
+        if (existing == null) return ResponseEntity.notFound().build();
+        patientService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

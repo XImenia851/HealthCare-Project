@@ -21,10 +21,6 @@ public class PatientService {
         return patientRepository.findAll();
     }
 
-    public Patient update(Patient newPatientData) {
-        return patientRepository.save(newPatientData);
-    }
-
     public void delete(Long id) {
         patientRepository.deleteById(id);
     }
@@ -36,5 +32,4 @@ public class PatientService {
     public Patient findByEmail(String email) {
         return patientRepository.findByEmail(email).orElse(null);
     }
-
 }
